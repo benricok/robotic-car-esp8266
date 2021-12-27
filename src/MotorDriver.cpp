@@ -4,10 +4,12 @@
 #include <Pinout.h>
 
 MotorDriver::MotorDriver(const Pinout::Pins pinout) {
-    motorPins = {pinout.Outputs[0].num,
-                 pinout.Outputs[1].num,
-                 pinout.Outputs[2].num,
-                 pinout.Outputs[3].num};
+    motorPins = {
+        pinout.Outputs[0].num,
+        pinout.Outputs[1].num,
+        pinout.Outputs[2].num,
+        pinout.Outputs[3].num
+    };
 }
 
 void MotorDriver::stop() {
