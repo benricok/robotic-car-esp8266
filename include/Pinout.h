@@ -6,7 +6,14 @@
 
 struct Pinout
 {
-    struct Pin
+    struct outputPin
+    {
+        int num;
+        String label;
+        boolean initHigh;
+    };
+
+    struct inputPin
     {
         int num;
         String label;
@@ -14,26 +21,31 @@ struct Pinout
 
     struct Pins
     {
-        std::vector<Pin> Outputs, Inputs;
+        std::vector<outputPin> Outputs;
+        std::vector<inputPin> Inputs;
     };
 
     bool init(const Pins pinout) {
+        for (const auto &pin : pinout.Outputs)
+        {
+            pinMode(pin.num, OUTPUT);
+            digitalWrite(pin.num, pin.initHigh ? HIGH : LOW);
+        }
+
+        for (const auto &pin : pinout.Inputs)
+        {
+            pinMode(pin.num, INPUT);
+        }
+        return true;
+
+        
         //std::vector<Pin>::const_iterator i = pinout.Outputs.begin();
         //std::vector<Pin>::const_iterator j = pinout.Outputs.begin();
         //for(; i != pinout.Outputs.end(); ++i)
         //{   
-        //    pinMode(pinout.Outputs[i], OUTPUT);
+        //    const Pin& pin = *i;
+        //    pinMode(pin.num, OUTPUT);
         //}
-        for (const auto &arr : pinout.Outputs)
-        {
-            pinMode(arr.num, OUTPUT);
-        }
-
-        for (const auto &arr : pinout.Inputs)
-        {
-            pinMode(arr.num, INPUT);
-        }
-        return true;
     };
 }_pinout;
 
