@@ -2,7 +2,12 @@
 #define _PINOUT_H_
 
 #include <Arduino.h>
-#include <Arduino_AVRSTL.h>
+//#include <Arduino_AVRSTL.h>
+
+#include <StandardCplusplus.h>
+#include <utility.h>
+#include <system_configuration.h>
+#include <unwind-cxx.h>
 
 struct Pinout
 {
@@ -25,7 +30,7 @@ struct Pinout
         std::vector<inputPin> Inputs;
     };
 
-    bool init(const Pins pinout) {
+    Pinout(const Pins pinout) {
         for (const auto &pin : pinout.Outputs)
         {
             pinMode(pin.num, OUTPUT);
@@ -36,8 +41,6 @@ struct Pinout
         {
             pinMode(pin.num, INPUT);
         }
-        return true;
-
         
         //std::vector<Pin>::const_iterator i = pinout.Outputs.begin();
         //std::vector<Pin>::const_iterator j = pinout.Outputs.begin();
@@ -47,6 +50,6 @@ struct Pinout
         //    pinMode(pin.num, OUTPUT);
         //}
     };
-}_pinout;
+};
 
 #endif

@@ -19,6 +19,12 @@
 #include <Arduino.h>
 #include <Pinout.h>
 #include <MotorDriver.h>
+#include <CaptivePortal.h>
+
+const struct CaptivePortal::WIFI credentials = {
+  "ESP-CAR", // AP SSID
+  "CAR12345" // Password
+};
 
 const struct Pinout::Pins carPinout = {
   // Outputs
@@ -33,7 +39,8 @@ const struct Pinout::Pins carPinout = {
   },
   // Inputs
   {
-    {D5, "Ultra Sonic"}
+    {D5, "Ultra Sonic"},
+    {D6, "IR Reciever"}
   }
 };
 
@@ -42,12 +49,15 @@ void setup() {
   Serial.println('/n');
 
   // Initialise pins
-  _pinout.init(carPinout);
+  Pinout PN(carPinout);
   MotorDriver MD(carPinout);
-
   MD.stop();
+
+  // Initialise Wifi AP
+  CaptivePortal CP(credentials);
 }
 
 void loop() {
   
 }
+ 

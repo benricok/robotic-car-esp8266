@@ -1,7 +1,11 @@
 #include <MotorDriver.h>
 #include <Arduino.h>
-#include <Arduino_AVRSTL.h>
+//#include <Arduino_AVRSTL.h>
 #include <Pinout.h>
+#include <StandardCplusplus.h>
+#include <utility.h>
+#include <system_configuration.h>
+#include <unwind-cxx.h>
 
 MotorDriver::MotorDriver(const Pinout::Pins pinout) {
     motorPins = {
