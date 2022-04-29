@@ -1,0 +1,17 @@
+body 
+{
+    background-color: black;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#noScript
+{
+    color: red; 
+    font-size: 30px;
+}
+
+.gCanvas
+{
+    background-color: darkgrey;
+}
